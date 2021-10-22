@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Configuracion";
+    Layout = "~/Views/_iuchat.cshtml";
+}
+<!-- Modal -->
+<div class="modal fade" id="editarperfil" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Informacion personal</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formulario" action="">
+                    <div class="form-group">
+                        <input class="form-control" id="rnombres" type="text">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="rapellidos" type="text">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="rusuario" type="text">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="rclave" type="text">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="rcelular" type="number">
+                    </div>
+                    <div class="form-group">
+                        <input id="ava" type="text" placeholder="url" />
+                        <input class="form-control" id="rfoto" type="file">
+                    </div>
+                    <div class="form-group" id="preview"></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="btn" class="btn btn-primary" type="button" onclick="guardarCambios()">Guardar cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container px-3">
+    <div class="row justify-content-center">
+        <div class="col-auto rounded m-sm-1">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Perfil: </label>
+                <div class=" justify-content-center m-2">
+                    <img id="ifoto" src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg" alt="user" width="150" class="rounded-circle ">
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Nombres:</label>
+                <div class=" justify-content-center m-2">
+                    <p id="inombres" class="text-muted"></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Apellidos:</label>
+                <div class=" justify-content-center m-2">
+                    <p id="iapellidos" class="text-muted"></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Usuario:</label>
+                <div class=" justify-content-center m-2">
+                    <p id="iusuario" class="text-muted"></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Contacto:</label>
+                <div class=" justify-content-center m-2">
+                    <p id="icelular" class="text-muted"></p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+                <label class="tx-11 font-weight-bold mb-0 text-uppercase">Password:</label>
+                <div class=" justify-content-center m-2">
+                    <p id="iclave" class="text-muted"></p>
+                </div>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-success" type="button" onclick="iditar()" data-toggle="modal" data-target="#editarperfil">Editar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Recursos/script/configu/conf.js"></script>

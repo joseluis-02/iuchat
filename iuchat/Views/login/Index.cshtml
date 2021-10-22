@@ -1,0 +1,121 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login iuchat</title>
+
+
+    <!--Estilos Bootstrap css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!--jQurery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <!--Estilos propios-->
+    <link href="~/Recursos/style/login/login.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="w3l-loginblock signinform">
+        <!-- main content -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <div class="row map-content-9 ">
+                    <div class="info-grids card m-2">
+                        <p class="text-center mb-3"><a class="brand-logo" href="index.html"><span class="text-black h3">ui</span><samp class="text-danger h1">Chat</samp></a></p>
+                        <div class="row justify-content-center">
+                            <div class="col-auto ">
+                                <img style="width:150px;" src="https://1.bp.blogspot.com/-96zh-qdMaLc/XdQViBYiD8I/AAAAAAAAAzM/GXbYoEHfHAEhvGRnvBvK2BKrAbqW1rcOwCLcBGAsYHQ/s1600/chat-icon-300x300.png" />
+                            </div>
+                        </div>
+                        <form id="log" >
+                            <div class="form-grid">
+                                <div class="input-field">
+                                    <label> Usuario </label>
+                                    <input type="text" id="username" placeholder="Nombre de usuario">
+                                </div>
+                                <div class="input-field">
+                                    <label> Contraseña</label>
+                                    <input type="password" id="pass" placeholder="Password" >
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="social-media">
+                                    <button type="button" onclick="Entrar()" class="btn btn-success">
+                                        Entrar
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+                        <form id="reg" >
+                            <h4 class="p-2 text-info">Forma parte de la comunidad de uichat</h4>
+                            <div class="form-grid">
+                                <div class="input-field">
+                                    <label> Nombres </label>
+                                    <input id="id" type="hidden" />
+                                    <input type="text" id="nombre" placeholder="Ecribe tu nombre">
+                                </div>
+                                <div class="input-field">
+                                    <label> Apellido </label>
+                                    <input type="text" id="apellido" placeholder="Ecribe tu apellido">
+                                </div>
+                                <div class="input-field">
+                                    <label>Usuario </label>
+                                    <input type="text" id="usuario" placeholder="Ecribe nombre usuario">
+                                </div>
+                                <div class="input-field">
+                                    <label>Clave </label>
+                                    <input type="password" id="clave" placeholder="Escrive clave">
+                                </div>
+                                <div class="input-field">
+                                    <label>Teléfono </label>
+                                    <input type="number" id="celular" placeholder="Número de celular">
+                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <div class="social-media">
+                                    <button onclick="guardar()" type="button" class="btn btn-info">
+                                        Registrarse
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+
+                    <div class="info-grids social-login-details align-self">
+                        <p class="text-center mt-4">
+                            chatea y conoce nuevas personas con <span class="text-black h4">ui</span><samp class="text-danger h3">Chat</samp><br />
+                            <button id="b0" onclick="register()" class=" btn badge badge-success">Quiero registrarme!</button>
+                            <button id="b1" onclick="login()" class=" btn badge badge-secondary">Ya tengo cuenta!</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- //main content -->
+        <!-- footer -->
+        <div class="footer">
+            <p>
+                &copy; 2021 www.uichat.com | uichat <a href="#" target="blank">uisoft</a>
+            </p>
+        </div>
+        <!-- footer -->
+    </div>
+    <script src="~/Recursos/script/login/main.js"></script>
+    <!--script de bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js "></script>
+
+</body>
+</html>

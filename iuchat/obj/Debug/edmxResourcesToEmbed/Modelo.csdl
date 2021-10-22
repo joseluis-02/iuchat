@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="iuchatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="chats">
+    <Key>
+      <PropertyRef Name="id_chat" />
+    </Key>
+    <Property Name="id_chat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_1" Type="Int32" />
+    <Property Name="user_2" Type="Int32" />
+    <Property Name="perfil" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="receptor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="estado" Type="Boolean" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK__chats__user_1__2B3F6F97" FromRole="chats" ToRole="usuario" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK__chats__user_2__2C3393D0" FromRole="chats" ToRole="usuario" />
+    <NavigationProperty Name="mensajes" Relationship="Self.FK__mensajes__chat_i__300424B4" FromRole="chats" ToRole="mensajes" />
+  </EntityType>
+  <EntityType Name="mensajes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="sms" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="user2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="chat_id" Type="Int32" />
+    <Property Name="estado" Type="Boolean" />
+    <Property Name="hora" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="chats" Relationship="Self.FK__mensajes__chat_i__300424B4" FromRole="mensajes" ToRole="chats" />
+  </EntityType>
+  <EntityType Name="publicacion">
+    <Key>
+      <PropertyRef Name="id_publicacion" />
+    </Key>
+    <Property Name="id_publicacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_publicacion" Type="Int32" />
+    <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="contenido" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hora" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fecha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK__publicaci__user___412EB0B6" FromRole="publicacion" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tamigos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_user_primario" Type="Int32" />
+    <Property Name="id_user_secundario" Type="Int32" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK__tamigos__id_user__49C3F6B7" FromRole="tamigos" ToRole="usuario" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK__tamigos__id_user__4AB81AF0" FromRole="tamigos" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="apellidos" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="celular" Type="Int32" />
+    <Property Name="usuario1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="clave" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="chats" Relationship="Self.FK__chats__user_1__2B3F6F97" FromRole="usuario" ToRole="chats" />
+    <NavigationProperty Name="chats1" Relationship="Self.FK__chats__user_2__2C3393D0" FromRole="usuario" ToRole="chats" />
+    <NavigationProperty Name="publicacion" Relationship="Self.FK__publicaci__user___412EB0B6" FromRole="usuario" ToRole="publicacion" />
+    <NavigationProperty Name="tamigos" Relationship="Self.FK__tamigos__id_user__49C3F6B7" FromRole="usuario" ToRole="tamigos" />
+    <NavigationProperty Name="tamigos1" Relationship="Self.FK__tamigos__id_user__4AB81AF0" FromRole="usuario" ToRole="tamigos" />
+  </EntityType>
+  <Association Name="FK__chats__user_1__2B3F6F97">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="chats" Type="Self.chats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="chats">
+        <PropertyRef Name="user_1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__chats__user_2__2C3393D0">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="chats" Type="Self.chats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="chats">
+        <PropertyRef Name="user_2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__mensajes__chat_i__300424B4">
+    <End Role="chats" Type="Self.chats" Multiplicity="0..1" />
+    <End Role="mensajes" Type="Self.mensajes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="chats">
+        <PropertyRef Name="id_chat" />
+      </Principal>
+      <Dependent Role="mensajes">
+        <PropertyRef Name="chat_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__publicaci__user___412EB0B6">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="publicacion" Type="Self.publicacion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="publicacion">
+        <PropertyRef Name="user_publicacion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tamigos__id_user__49C3F6B7">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="tamigos" Type="Self.tamigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="tamigos">
+        <PropertyRef Name="id_user_secundario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tamigos__id_user__4AB81AF0">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="tamigos" Type="Self.tamigos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id_user" />
+      </Principal>
+      <Dependent Role="tamigos">
+        <PropertyRef Name="id_user_secundario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="iuchatEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="chats" EntityType="Self.chats" />
+    <EntitySet Name="mensajes" EntityType="Self.mensajes" />
+    <EntitySet Name="publicacion" EntityType="Self.publicacion" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tamigos" EntityType="Self.tamigos" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <AssociationSet Name="FK__chats__user_1__2B3F6F97" Association="Self.FK__chats__user_1__2B3F6F97">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="chats" EntitySet="chats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__chats__user_2__2C3393D0" Association="Self.FK__chats__user_2__2C3393D0">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="chats" EntitySet="chats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__mensajes__chat_i__300424B4" Association="Self.FK__mensajes__chat_i__300424B4">
+      <End Role="chats" EntitySet="chats" />
+      <End Role="mensajes" EntitySet="mensajes" />
+    </AssociationSet>
+    <AssociationSet Name="FK__publicaci__user___412EB0B6" Association="Self.FK__publicaci__user___412EB0B6">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="publicacion" EntitySet="publicacion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tamigos__id_user__49C3F6B7" Association="Self.FK__tamigos__id_user__49C3F6B7">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tamigos" EntitySet="tamigos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tamigos__id_user__4AB81AF0" Association="Self.FK__tamigos__id_user__4AB81AF0">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tamigos" EntitySet="tamigos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
